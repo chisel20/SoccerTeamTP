@@ -1,2 +1,2 @@
-# Andrey-Cheslow-ST
+# SoccerTeamTP
 Soccer teams test project
