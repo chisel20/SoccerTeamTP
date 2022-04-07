@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}">
+    <title>Footballer</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-light p-1">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="index.html" th:href="@{/}" class="navbar-brand"><img src="img/logo.svg" th:src="@{/img/logo.svg}" height="32" width="32" alt="HR"></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="teams.html" th:href="@{/teams}">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="footballers.html" th:href="@{/footballers}">Footballers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="ps-1 py-1 mb-3 navbar navbar-light bg-light text-dark">
+
+        <ul class="navbar-nav float-start">
+            <li class="nav-item"
+                title="Back to list">
+                <a href="footballers.html" th:href="@{/footballers}" class="btn btn-light btn-block"><i class="bi-arrow-left"></i></a>
+            </li>
+        </ul>
+        <span class="navbar-brand text-uppercase me-auto">Edit footballer</span>
+    </nav>
+</header>
+
+<section id="footballer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="footballerForm" th:object="${footballer}"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+
+                            <input id="field_footballerId"
+                                   type="hidden"
+                                   th:field="*{footballerId}"/>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_team">Team</label>
+                                <select class="form-control"
+                                        id="field_team" th:field="*{teamId}">
+                                    <option value="0" th:each="team : ${teams}"
+                                            th:value="${team.teamId}"
+                                            th:text="${team.teamName}">team1</option>
+                                    <option value="1" th:remove="all">team2</option>
+                                    <option value="2" th:remove="all">team3</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_footballerFirstName">First Name</label>
+                                <div th:if="${#fields.hasErrors('firstName')}"
+                                     class="text-danger"
+                                     th:errors="*{firstName}">[errors]
+                                </div>
+                                <input class="form-control"
+                                       id="field_footballerFirstName"
+                                       type="text"
+                                       value="Ivan"
+                                       placeholder="First Name"
+                                       th:value="${isNew} ? '' : *{firstName}"
+                                        th:field="*{firstName}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_footballerLastName">Last Name</label>
+                                <div th:if="${#fields.hasErrors('lastName')}"
+                                     class="text-danger"
+                                     th:errors="*{lastName}">[errors]
+                                </div>
+                                <input class="form-control"
+                                       id="field_footballerLastName"
+                                       type="text"
+                                       value="Ivanov"
+                                       placeholder="Last Name"
+                                       th:value="${isNew} ? '' : *{lastName}"
+                                       th:field="*{lastName}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_footballerAge">Age</label>
+                                <div th:if="${#fields.hasErrors('age')}"
+                                     class="text-danger"
+                                     th:errors="*{age}">[errors]
+                                </div>
+                                <input class="form-control"
+                                       id="field_footballerAge"
+                                       type="text"
+                                       value="20"
+                                       placeholder="Age"
+                                       th:value="${isNew} ? '' : *{age}"
+                                       th:field="*{age}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_footballerSalary">Salary</label>
+                                <div th:if="${#fields.hasErrors('salary')}"
+                                     class="text-danger"
+                                     th:errors="*{salary}">[errors]
+                                </div>
+                                <input class="form-control"
+                                       id="field_footballerSalary"
+                                       type="text"
+                                       value="1000"
+                                       placeholder="Salary"
+                                       th:value="${isNew} ? '' : *{salary}"
+                                       th:field="*{salary}"/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group form-group-lg">
+                                    <label class="form-label"
+                                           for="field_footballerJoinToTeamDate">Joining date</label>
+                                    <div th:if="${#fields.hasErrors('joiningDate')}"
+                                         class="text-danger"
+                                         th:errors="*{joiningDate}">[errors]
+                                    </div>
+                                        <input type="date" id="field_footballerJoinToTeamDate" class="form-control"
+                                        th:field="*{joiningDate}" >
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="footballers.html"
+                                   th:href="@{/footballers}"
+                                   class="btn btn-light me-1"
+                                   title="Cancel">Cancel</a>
+                                <a href="footballers.html"
+                                   th:href="@{/footballers}"
+                                   th:onclick="@{document.forms['footballerForm'].submit();return false;}"
+                                   class="btn btn-primary"
+                                   title="Save footballer">Save</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; ANDREI CHASLOU 2022</p>
+</footer>
+
+</body>
+</html>

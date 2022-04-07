@@ -1,2 +1,2 @@
-# SoccerTeamTP
-Web-application without tests,logs and documentation(test project)
+# Andrey-Cheslow-ST
+Soccer teams test project

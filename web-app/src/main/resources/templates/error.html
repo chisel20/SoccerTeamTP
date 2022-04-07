@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../../resources/static/css/bootstrap.css"
+          th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../resources/static/css/style.css"
+          th:href="@{/css/style.css}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <title>Ops.. Something wrong</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-light p-1">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="index.html" th:href="@{/}" class="navbar-brand"><img src="img/logo.svg" th:src="@{/img/logo.svg}" height="32" width="32" alt="HR"></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="teams.html" th:href="@{/teams}">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="footballers.html" th:href="@{/footballers}">Footballers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="ps-1 py-1 mb-3 navbar navbar-light bg-light text-dark">
+        <span class="navbar-brand text-uppercase me-auto">Ops.. Something wrong</span>
+    </nav>
+</header>
+
+<section id="department">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body" role="alert">
+                        <!--  As we are using Thymeleaf, you might consider using
+${#httpServletRequest.requestURL}. But that returns the path
+to this error page.  Hence we explicitly add the url to the
+Model in some of the example code. -->
+                        <p th:if="${url}">
+                            <b>Page:</b> <span th:text="${url}">Page URL</span>
+                        </p>
+
+                        <p th:if="${timestamp}" id='created'>
+                            <b>Occurred:</b> <span th:text="${timestamp}">Timestamp</span>
+                        </p>
+
+                        <p th:if="${status}">
+                            <b>Response Status:</b> <span th:text="${status}">status-code</span> <span
+                                th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+                        </p>
+
+                        <p th:if="${errorMessage}">
+                            <b>Error message:</b> <span th:text="${errorMessage}">status-code</span>
+                        </p>
+
+                        <p>Application has encountered an error. Please contact support on ...</p>
+
+                        <p>Support may ask you to right click to view page source.</p>
+                                                <!--
+                          // Hidden Exception Details  - this is not a recommendation, but here is
+                          // how you could hide an exception in the page using Thymeleaf
+                          -->
+                        <div th:utext="'&lt;!--'" th:remove="tag"></div>
+                        <div th:utext="'Failed URL: ' +  ${url}" th:remove="tag">${url}</div>
+                        <div th:utext="'Exception: ' + ${exception.message}" th:remove="tag">${exception.message}</div>
+                        <ul th:remove="tag">
+                            <li th:each="ste : ${exception.stackTrace}" th:remove="tag"><span th:utext="${ste}" th:remove="tag">${ste}</span >
+                            </li>
+
+
+
+                        </ul>
+                        <div th:utext="'--&gt;'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; ANDREI CHASLOU 2022</p>
+</footer>
+
+
+</body>
+</html>

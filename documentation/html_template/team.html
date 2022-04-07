@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Team</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-light p-1">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="index.html" class="navbar-brand"><img src="img/logo.svg" height="32" width="32" alt="HR"></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="teams.html">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="footballers.html">Footballers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="ps-1 py-1 mb-3 navbar navbar-light bg-light text-dark">
+        <ul class="navbar-nav float-start">
+            <li class="nav-item" title="Back to list">
+                <a href="teams.html" class="btn btn-light btn-block">
+                    <i class="bi-arrow-left"></i></a>
+            </li>
+        </ul>
+        <span class="navbar-brand text-uppercase me-auto">Edit team</span>
+    </nav>
+</header>
+
+<section id="team">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label"
+                                       for="field_teamName">Team Name</label>
+                                <input class="form-control "
+                                       id="field_teamName"
+                                       type="text" value="CEO"/>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="teams.html"
+                                   class="btn btn-light me-1"
+                                   title="Cancel">Cancel</a>
+                                <a href="teams.html"
+                                   class="btn btn-primary"
+                                   title="Save team">Save</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; ANDREI CHASLOU 2022</p>
+</footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
