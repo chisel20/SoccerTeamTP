@@ -80,6 +80,9 @@
                 <configuration>
                     <includes>
                         <include>TeamDaoJDBCImplTest.java</include>
+                        <include>FootballerDaoJDBCImplTest.java</include>
+                        <include>FootballerDaoDtoJDBCImplTest.java</include>
+                        <include>TeamDaoDtoJDBCImplTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
